@@ -119,7 +119,10 @@ jobs:
           name: coverage-reports
 
       - name: Install unzip
-        run: sudo apt-get update && sudo apt-get install -y unzip
+        run: echo "${{ secrets.SUDO_PASSWORD }}" | sudo apt-get update && sudo apt-get install -y unzip
+
+      - name: Install jq
+        run: echo "${{ secrets.SUDO_PASSWORD }}" | sudo apt-get update && sudo apt-get install -y j
 
       - name: Run SonarQube Scan with Coverage
         uses: SonarSource/sonarqube-scan-action@v6
